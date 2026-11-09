@@ -258,6 +258,8 @@ loom {
 			preferGradleTask = true
 		}
 	}
+
+	uncompressNestedJars = true
 }
 
 sourceSets {
