@@ -34,7 +34,7 @@ import de.hysky.skyblocker.skyblock.tabhud.util.Ico;
 import de.hysky.skyblocker.utils.FlexibleItemStack;
 import de.hysky.skyblocker.utils.Http;
 import de.hysky.skyblocker.utils.Utils;
-import de.hysky.skyblocker.utils.scheduler.Scheduler;
+//import de.hysky.skyblocker.utils.scheduler.Scheduler;
 
 public class EventNotifications {
 	private static final Logger LOGGER = LogUtils.getLogger();
@@ -63,7 +63,7 @@ public class EventNotifications {
 
 	@Init
 	public static void init() {
-		Scheduler.INSTANCE.scheduleCyclic(EventNotifications::timeUpdate, 20);
+		//Scheduler.INSTANCE.scheduleCyclic(EventNotifications::timeUpdate, 20);
 		SkyblockEvents.JOIN.register(EventNotifications::refreshEvents);
 	}
 

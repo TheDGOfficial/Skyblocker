@@ -3,7 +3,6 @@ package de.hysky.skyblocker.utils;
 import java.util.Base64;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
@@ -14,7 +13,6 @@ import java.util.regex.Pattern;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -564,16 +562,25 @@ public final class ItemUtils {
 	}
 
 	public static String getHeadTexture(ItemInstance stack) {
-		if (!stack.is(Items.PLAYER_HEAD)) return "";
+		if (!stack.is(Items.PLAYER_HEAD)) {
+			return "";
+		}
 
-		ResolvableProfile profile = stack.get(DataComponents.PROFILE);
-		if (profile == null) return "";
+		final var profile = stack.get(DataComponents.PROFILE);
+		if (profile == null) {
+			return "";
+		}
 
-		return profile.partialProfile().properties().get("textures").stream()
-				.filter(Objects::nonNull)
-				.map(Property::value)
-				.findFirst()
-				.orElse("");
+		final var textures =
+				profile.partialProfile().properties().get("textures");
+
+		for (final var property : textures) {
+			if (property != null) {
+				return property.value();
+			}
+		}
+
+		return "";
 	}
 
 	public static Optional<String> getHeadTextureOptional(ItemStack stack) {

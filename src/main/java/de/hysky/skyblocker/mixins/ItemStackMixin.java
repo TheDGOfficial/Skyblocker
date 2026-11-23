@@ -66,14 +66,14 @@ public abstract class ItemStackMixin implements DataComponentHolder, SkyblockerS
 	@Unique
 	private @Nullable SkyblockItemRarity skyblockRarity;
 
-	@ModifyReturnValue(method = "getHoverName", at = @At("RETURN"))
+	/*@ModifyReturnValue(method = "getHoverName", at = @At("RETURN"))
 	private Component skyblocker$customItemNames(Component original) {
 		if (Utils.isOnSkyblock()) {
 			return SkyblockerConfigManager.get().general.customItemNames.getOrDefault(this.getUuid(), original);
 		}
 
 		return original;
-	}
+	}*/
 
 	@ModifyExpressionValue(method = "addToTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/component/TooltipDisplay;shows(Lnet/minecraft/core/component/DataComponentType;)Z"))
 	private boolean skyblocker$hideVanillaEnchants(boolean shouldDisplay, @Local(name = "component") TooltipProvider component) {

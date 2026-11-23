@@ -6,7 +6,6 @@ import java.util.List;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 
-import net.azureaaron.renderchest.api.CustomGlowCallback;
 import net.azureaaron.renderchest.api.GlowConstants;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.renderer.entity.state.EntityRenderState;
@@ -33,7 +32,7 @@ public class MobGlow {
 	public static void init() {
 		// Clear the cache every tick
 		ClientTickEvents.END_LEVEL_TICK.register(_ -> clearCache());
-		CustomGlowCallback.EVENT.register(MobGlow::applyCustomGlow);
+		//CustomGlowCallback.EVENT.register(MobGlow::applyCustomGlow);
 	}
 
 	private static int applyCustomGlow(Entity entity, EntityRenderState state) {

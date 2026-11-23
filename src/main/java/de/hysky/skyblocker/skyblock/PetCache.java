@@ -12,10 +12,7 @@ import org.apache.commons.lang3.mutable.MutableInt;
 import org.jspecify.annotations.Nullable;
 
 import net.azureaaron.networth.utils.PetConstants;
-import net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents;
-import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -30,7 +27,6 @@ import de.hysky.skyblocker.skyblock.item.PetInfo;
 import de.hysky.skyblocker.skyblock.item.SkyblockItemRarity;
 import de.hysky.skyblocker.skyblock.itemlist.ItemRepository;
 import de.hysky.skyblocker.utils.FlexibleItemStack;
-import de.hysky.skyblocker.utils.ItemUtils;
 import de.hysky.skyblocker.utils.RegexUtils;
 import de.hysky.skyblocker.utils.Utils;
 import de.hysky.skyblocker.utils.data.ProfiledData;
@@ -52,9 +48,9 @@ public class PetCache {
 
 	@Init
 	public static void init() {
-		CACHED_PETS.load();
+		//CACHED_PETS.load();
 
-		ScreenEvents.BEFORE_INIT.register((_, screen, _, _) -> {
+		/*ScreenEvents.BEFORE_INIT.register((_, screen, _, _) -> {
 			if (Utils.isOnSkyblock() && screen instanceof ContainerScreen genericContainerScreen) {
 				if (genericContainerScreen.getTitle().getString().startsWith("Pets")) {
 					shouldLook4Pets = true;
@@ -75,8 +71,8 @@ public class PetCache {
 					});
 				}
 			}
-		});
-		ClientReceiveMessageEvents.ALLOW_GAME.register(PetCache::onMessage);
+		});*/
+		//ClientReceiveMessageEvents.ALLOW_GAME.register(PetCache::onMessage);
 	}
 
 	public static void handlePetEquip(Slot slot, int slotId) {

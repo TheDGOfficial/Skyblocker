@@ -36,15 +36,19 @@ public class McGrubberUpdater {
 	@Init
 	public static void init() {
 		ScreenEvents.BEFORE_INIT.register((_, screen, _, _) -> {
-			if (!Utils.isOnSkyblock() || !(screen instanceof ContainerScreen containerScreen)) {
-				return;
-			} else if (!SkyblockerConfigManager.get().otherLocations.rift.autoDetectMcGrubber) {
+			if (
+				!SkyblockerConfigManager.get().otherLocations.rift.autoDetectMcGrubber
+				|| !Utils.isOnSkyblock()
+				|| !(screen instanceof ContainerScreen containerScreen)
+			) {
 				return;
 			}
 
-			if (Utils.isInTheRift() && containerScreen.getTitle().getString().equals(MOTES_GRUBBER)) {
+			final var title = containerScreen.getTitle().getString();
+
+			if (Utils.isInTheRift() && MOTES_GRUBBER.equals(title)) {
 				ScreenEvents.remove(screen).register(_ -> McGrubberUpdater.fromMotesGrubber(containerScreen));
-			} else if (!Utils.isInTheRift() && containerScreen.getTitle().getString().equals(CONSUMABLE_ITEMS)) {
+			} else if (!Utils.isInTheRift() && CONSUMABLE_ITEMS.equals(title)) {
 				ScreenEvents.remove(screen).register(_ -> McGrubberUpdater.fromConsumableItems(containerScreen));
 			}
 		});

@@ -22,7 +22,6 @@ import de.hysky.skyblocker.config.backup.ConfigBackupManager;
 import de.hysky.skyblocker.skyblock.item.tooltip.BackpackPreview;
 import de.hysky.skyblocker.skyblock.tabhud.util.PlayerListManager;
 import de.hysky.skyblocker.utils.Utils;
-import de.hysky.skyblocker.utils.discord.DiscordRPCManager;
 import de.hysky.skyblocker.utils.scheduler.MessageScheduler;
 import de.hysky.skyblocker.utils.scheduler.Scheduler;
 
@@ -60,7 +59,7 @@ public class SkyblockerMod implements ClientModInitializer {
 
 		init();
 		Scheduler.INSTANCE.scheduleCyclic(Utils::update, 20);
-		Scheduler.INSTANCE.scheduleCyclic(DiscordRPCManager::updateDataAndPresence, 200);
+		//Scheduler.INSTANCE.scheduleCyclic(DiscordRPCManager::updateDataAndPresence, 200);
 		Scheduler.INSTANCE.scheduleCyclic(BackpackPreview::tick, 50);
 		Scheduler.INSTANCE.scheduleCyclic(PlayerListManager::tryUpdateList, 2); // 2 instead of 1 because I don't know
 	}

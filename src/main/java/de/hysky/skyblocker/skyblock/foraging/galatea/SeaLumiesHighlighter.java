@@ -16,7 +16,7 @@ import de.hysky.skyblocker.annotations.Init;
 import de.hysky.skyblocker.config.SkyblockerConfigManager;
 import de.hysky.skyblocker.skyblock.foraging.AbstractBlockHighlighter;
 import de.hysky.skyblocker.utils.BlockPosSet;
-import de.hysky.skyblocker.utils.Utils;
+//import de.hysky.skyblocker.utils.Utils;
 
 public final class SeaLumiesHighlighter extends AbstractBlockHighlighter {
 	public static final SeaLumiesHighlighter INSTANCE = new SeaLumiesHighlighter();
@@ -71,7 +71,7 @@ public final class SeaLumiesHighlighter extends AbstractBlockHighlighter {
 
 	@Override
 	protected boolean shouldProcess() {
-		return Utils.isInGalatea(); // Process all blocks, just don't highlight them if the config is disabled. This way, changing the config has an immediate effect rather than waiting for a chunk reload.
+		return isEnabled();
 	}
 
 	@Override

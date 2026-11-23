@@ -49,7 +49,6 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
 import de.hysky.skyblocker.SkyblockerMod;
-import de.hysky.skyblocker.annotations.Init;
 import de.hysky.skyblocker.debug.Debug;
 import de.hysky.skyblocker.events.SkyblockEvents;
 import de.hysky.skyblocker.utils.Constants;
@@ -80,7 +79,7 @@ public class MuseumItemCache {
 
 	private static final int CURRENT_DATA_VERSION = 1;
 
-	@Init
+	//@Init
 	public static void init() {
 		loadMuseumItems();
 		ClientLifecycleEvents.CLIENT_STARTED.register(_ -> MUSEUM_ITEM_CACHE.load());

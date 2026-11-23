@@ -1,37 +1,11 @@
 package de.hysky.skyblocker.utils.ws;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpClient.Redirect;
-import java.net.http.HttpClient.Version;
-import java.net.http.HttpResponse;
-import java.net.http.WebSocket;
-import java.net.http.WebSocketHandshakeException;
-import java.nio.ByteBuffer;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-import com.mojang.logging.LogUtils;
-import org.jspecify.annotations.Nullable;
-import org.slf4j.Logger;
 
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 
-import de.hysky.skyblocker.SkyblockerMod;
-import de.hysky.skyblocker.annotations.Init;
-import de.hysky.skyblocker.debug.Debug;
-import de.hysky.skyblocker.events.SkyblockEvents;
-import de.hysky.skyblocker.utils.ApiAuthentication;
-import de.hysky.skyblocker.utils.Http;
 
 public class SkyblockerWebSocket {
-	private static final Logger LOGGER = LogUtils.getLogger();
+	/*private static final Logger LOGGER = LogUtils.getLogger();
 	private static final String WS_URL = "wss://ws.hysky.de";
 	private static final HttpClient HTTP_CLIENT = HttpClient.newBuilder()
 			.connectTimeout(Duration.ofSeconds(10))
@@ -86,17 +60,17 @@ public class SkyblockerWebSocket {
 
 	private static boolean isConnectionOpen() {
 		return socket != null && !socket.isInputClosed() && !socket.isOutputClosed();
-	}
+	}*/
 
 	static void send(String message) {
-		if (isConnectionOpen()) {
+		/*if (isConnectionOpen()) {
 			sendInternal(message);
 		} else {
 			setupSocket().thenRun(() -> sendInternal(message));
-		}
+		}*/
 	}
 
-	private static void sendInternal(String message) {
+	/*private static void sendInternal(String message) {
 		MESSAGE_SEND_QUEUE.submit(() -> {
 			try {
 				if (Debug.debugEnabled() && Debug.webSocketDebug()) {
@@ -166,5 +140,5 @@ public class SkyblockerWebSocket {
 
 			WsMessageHandler.handleMessage(message);
 		}
-	}
+	}*/
 }

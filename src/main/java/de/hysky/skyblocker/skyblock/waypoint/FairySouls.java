@@ -74,6 +74,9 @@ public class FairySouls {
 	@Init
 	public static void init() {
 		loadFairySouls();
+		if (true) {
+			return;
+		}
 		ClientLifecycleEvents.CLIENT_STOPPING.register(FairySouls::saveFoundFairySouls);
 		ClientCommandRegistrationCallback.EVENT.register(FairySouls::registerCommands);
 		LevelRenderExtractionCallback.EVENT.register(FairySouls::extractRendering);

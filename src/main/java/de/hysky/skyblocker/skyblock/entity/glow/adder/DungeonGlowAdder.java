@@ -1,24 +1,10 @@
 package de.hysky.skyblocker.skyblock.entity.glow.adder;
 
-import java.util.List;
 
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.ambient.Bat;
-import net.minecraft.world.entity.decoration.ArmorStand;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.DyeColor;
 
 import de.hysky.skyblocker.annotations.Init;
-import de.hysky.skyblocker.config.SkyblockerConfigManager;
-import de.hysky.skyblocker.skyblock.dungeon.DungeonScore;
-import de.hysky.skyblocker.skyblock.dungeon.LividColor;
-import de.hysky.skyblocker.skyblock.dungeon.secrets.DungeonManager;
-import de.hysky.skyblocker.skyblock.dungeon.secrets.DungeonPlayerManager;
-import de.hysky.skyblocker.skyblock.entity.MobGlow;
 import de.hysky.skyblocker.skyblock.entity.MobGlowAdder;
-import de.hysky.skyblocker.skyblock.item.HeadTextures;
-import de.hysky.skyblocker.utils.ItemUtils;
 import de.hysky.skyblocker.utils.Utils;
 
 public class DungeonGlowAdder extends MobGlowAdder {
@@ -34,7 +20,9 @@ public class DungeonGlowAdder extends MobGlowAdder {
 
 	@Override
 	public int computeColour(Entity entity) {
-		String name = entity.getName().getString();
+		return NO_GLOW;
+		// Lazy-once getName and getString call to skip Text processing unless the value is actually used
+		/*Supplier<String> name = Suppliers.memoize(() -> entity.getName().getString());
 
 		return switch (entity) {
 			// Minibosses
@@ -69,7 +57,7 @@ public class DungeonGlowAdder extends MobGlowAdder {
 			case Player p when SkyblockerConfigManager.get().dungeons.classBasedPlayerGlow && DungeonScore.isDungeonStarted() -> DungeonPlayerManager.getClassFromPlayer(p).glowColor();
 
 			default -> NO_GLOW;
-		};
+		};*/
 	}
 
 	@Override
@@ -84,7 +72,8 @@ public class DungeonGlowAdder extends MobGlowAdder {
 	 * @return true if the entity is starred, false otherwise
 	 */
 	public static boolean isStarred(Entity entity) {
-		List<ArmorStand> armorStands = MobGlow.getArmorStands(entity);
-		return !armorStands.isEmpty() && armorStands.getFirst().getName().getString().contains("✯");
+		return false;
+		/*List<ArmorStand> armorStands = MobGlow.getArmorStands(entity);
+		return !armorStands.isEmpty() && armorStands.getFirst().getName().getString().contains("✯");*/
 	}
 }

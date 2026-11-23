@@ -33,7 +33,7 @@ public class CustomHelmetTextures {
 
 	@Init
 	public static void init() {
-		ItemRepository.runAsyncAfterImport(CustomHelmetTextures::loadTextures);
+		//ItemRepository.runAsyncAfterImport(CustomHelmetTextures::loadTextures);
 	}
 
 	private static void loadTextures() {

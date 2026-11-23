@@ -80,6 +80,10 @@ public final class DataTooltipInfo<T> extends SimpleTooltipInfo implements DataT
 
 	@Override
 	public void run() {
+		if (null != data) {
+			return;
+		}
+
 		try {
 			if (cacheable) {
 				HttpHeaders headers = Http.sendHeadRequest(address);

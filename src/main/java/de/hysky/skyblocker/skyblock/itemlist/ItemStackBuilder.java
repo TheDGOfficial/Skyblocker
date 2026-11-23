@@ -87,7 +87,7 @@ public class ItemStackBuilder {
 		List<Pair<String, String>> list = new ArrayList<>();
 
 		String petName = internalName.split(";")[0];
-		if (!internalName.contains(";") || !petNums.containsKey(petName)) return list;
+		if (!internalName.contains(";") || petNums == null || !petNums.containsKey(petName)) return list;
 
 		final Rarity[] rarities = {
 				Rarity.COMMON,

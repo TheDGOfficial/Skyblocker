@@ -157,7 +157,7 @@ dependencies {
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Loom does not always add this
-	implementation "ca.weblite:java-objc-bridge:1.1"
+	implementation "ca.weblite:java-objc-bridge:1.2"
 
 	// Fabric API
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
@@ -273,30 +273,28 @@ base {
 }
 
 tasks.withType(ProcessResources).configureEach {
-	def version = project.version
-	inputs.property "version", version
+	// Capture version at configuration time
+	final def modVersion = project.version
 
-	filesMatching("fabric.mod.json") {
-		expand "version": version
+	// Declare version for incremental builds
+	inputs.property('version', modVersion)
+
+	filesMatching('fabric.mod.json') {
+		expand(["version": modVersion])
 	}
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 25
-	it.options.compilerArgs << "-Xmaxerrs" << "2000"
-}
-
-java {
-	sourceCompatibility = JavaVersion.VERSION_25
-	targetCompatibility = JavaVersion.VERSION_25
+	it.options.release = 26
+	//it.options.compilerArgs += '-Xlint:all'
 }
 
 jar {
-	def archivesName = project.base.archivesName
-	inputs.property "archivesName", archivesName.get()
+	inputs.property 'archivesName', project.base.archivesName
+	final def archiveName = inputs.properties.archivesName
 
-	from("LICENSE") {
-		rename { "${it}_${archivesName.get()}" }
+	from('LICENSE') {
+		rename { "${it}_${archiveName}" }
 	}
 }
 

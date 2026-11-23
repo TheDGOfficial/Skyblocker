@@ -29,6 +29,9 @@ public class RepoDyeColors {
 
 	@Init
 	public static void init() {
+		if (true) {
+			return;
+		}
 		NEURepoManager.runAsyncAfterLoad(RepoDyeColors::loadDyes);
 	}
 

@@ -54,7 +54,6 @@ import de.hysky.skyblocker.skyblock.experiment.UltrasequencerSolver;
 import de.hysky.skyblocker.skyblock.garden.visitor.VisitorHelper;
 import de.hysky.skyblocker.skyblock.item.ItemPrice;
 import de.hysky.skyblocker.skyblock.item.ItemProtection;
-import de.hysky.skyblocker.skyblock.item.background.ItemBackgroundManager;
 import de.hysky.skyblocker.skyblock.item.slottext.SlotTextManager;
 import de.hysky.skyblocker.skyblock.item.tooltip.BackpackPreview;
 import de.hysky.skyblocker.skyblock.item.tooltip.CompactorDeletorPreview;
@@ -186,12 +185,12 @@ public abstract class AbstractContainerScreenMixin<T extends AbstractContainerMe
 			return;
 		}
 
-		var name = text.getFirst().getString();
+		/*var name = text.getFirst().getString();
 
 		// Hide Empty Tooltips
 		if (SkyblockerConfigManager.get().uiAndVisuals.hideEmptyTooltips && name.isBlank()) {
 			return;
-		}
+		}*/
 
 		// Backpack Preview
 		boolean shiftDown = SkyblockerConfigManager.get().uiAndVisuals.backpackPreviewWithoutShift ^ GuiHelper.hasShiftDown();
@@ -342,7 +341,7 @@ public abstract class AbstractContainerScreenMixin<T extends AbstractContainerMe
 
 	}
 
-	@Inject(method = "extractSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;item(Lnet/minecraft/world/item/ItemStack;III)V"))
+	/*@Inject(method = "extractSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;item(Lnet/minecraft/world/item/ItemStack;III)V"))
 	private void skyblocker$drawOnItem(CallbackInfo ci, @Local(name = "graphics") GuiGraphicsExtractor graphics, @Local(name = "slot") Slot slot) {
 		if (Utils.isOnSkyblock()) {
 			ItemBackgroundManager.drawBackgrounds(slot.getItem(), graphics, slot.x, slot.y);
@@ -357,7 +356,7 @@ public abstract class AbstractContainerScreenMixin<T extends AbstractContainerMe
 		if (InventorySearch.isSearching() && !InventorySearch.slotMatches(slot)) {
 			graphics.fill(slot.x, slot.y, slot.x + 16, slot.y + 16, 0xB0_000000);
 		}
-	}
+	}*/
 
 	@Inject(method = "extractSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;itemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V"))
 	private void skyblocker$drawSlotText(CallbackInfo ci, @Local(name = "graphics") GuiGraphicsExtractor graphics, @Local(name = "slot") Slot slot) {

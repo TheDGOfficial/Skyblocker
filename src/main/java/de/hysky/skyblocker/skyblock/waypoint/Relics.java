@@ -56,6 +56,9 @@ public class Relics {
 
 	@Init
 	public static void init() {
+		if (true) {
+			return;
+		}
 		ClientLifecycleEvents.CLIENT_STARTED.register(Relics::loadRelics);
 		ClientLifecycleEvents.CLIENT_STOPPING.register(Relics::saveFoundRelics);
 		ClientCommandRegistrationCallback.EVENT.register(Relics::registerCommands);

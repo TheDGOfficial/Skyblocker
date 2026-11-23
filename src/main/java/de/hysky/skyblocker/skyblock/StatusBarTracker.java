@@ -94,7 +94,7 @@ public class StatusBarTracker {
 	}
 
 	private static void tick() {
-		if (MINECRAFT.player == null || !Utils.isOnSkyblock()) return;
+		if (MINECRAFT.player == null || !Utils.isOnSkyblock() || !SkyblockerConfigManager.get().uiAndVisuals.bars.enableBars) return;
 		ticks++;
 		updateHealth(health.value, health.max);
 		updateSpeed();
@@ -105,7 +105,7 @@ public class StatusBarTracker {
 
 	@SuppressWarnings("SameReturnValue")
 	private static InteractionResult interactItem(Player player, Level world, InteractionHand hand) {
-		if (MINECRAFT.player == null) return InteractionResult.PASS;
+		if (MINECRAFT.player == null || !SkyblockerConfigManager.get().uiAndVisuals.bars.enableBars) return InteractionResult.PASS;
 		ItemStack handStack = MINECRAFT.player.getMainHandItem();
 		int manaCost = 0;
 		for (ItemAbility ability : handStack.skyblocker$getAbilities()) {
@@ -126,7 +126,7 @@ public class StatusBarTracker {
 	}
 
 	private static Component onOverlayMessage(Component text, boolean overlay) {
-		if (!overlay || !Utils.isOnSkyblock()) {
+		if (!overlay || !Utils.isOnSkyblock() || !SkyblockerConfigManager.get().uiAndVisuals.bars.enableBars || !FancyStatusBars.INSTANCE.isEnabled()) {
 			return text;
 		}
 

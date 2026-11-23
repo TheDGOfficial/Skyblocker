@@ -100,7 +100,7 @@ public class PickobulusHelper {
 	}
 
 	private static void update() {
-		if (!SkyblockerConfigManager.get().mining.pickobulusHelper.enablePickobulusHelper && !WidgetManager.isWidgetInCurrentScreen(PickobulusHudWidget.getInstance())) return;
+		if (!SkyblockerConfigManager.get().mining.pickobulusHelper.enablePickobulusHelper || !WidgetManager.isWidgetInCurrentScreen(PickobulusHudWidget.getInstance())) return;
 
 		shouldRender = true;
 		errorMessage = null;

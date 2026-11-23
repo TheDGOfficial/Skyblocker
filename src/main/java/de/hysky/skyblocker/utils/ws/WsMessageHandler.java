@@ -2,20 +2,12 @@ package de.hysky.skyblocker.utils.ws;
 
 import java.util.Optional;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.mojang.logging.LogUtils;
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.Dynamic;
 import com.mojang.serialization.JsonOps;
 import org.slf4j.Logger;
 
-import de.hysky.skyblocker.SkyblockerMod;
-import de.hysky.skyblocker.skyblock.dungeon.secrets.DungeonWebSocket;
 import de.hysky.skyblocker.utils.Utils;
-import de.hysky.skyblocker.utils.ws.message.CrystalsWaypointMessage;
-import de.hysky.skyblocker.utils.ws.message.EggWaypointMessage;
 import de.hysky.skyblocker.utils.ws.message.Message;
 
 public class WsMessageHandler {
@@ -43,18 +35,18 @@ public class WsMessageHandler {
 	}
 
 	private static void send(Type type, Service service, String serverId, Optional<Dynamic<?>> message) {
-		try {
+		/*try {
 			Payload payload = new Payload(type, service, serverId, message);
 			JsonObject encoded = Payload.CODEC.encodeStart(JsonOps.INSTANCE, payload).getOrThrow().getAsJsonObject();
 
 			SkyblockerWebSocket.send(SkyblockerMod.GSON_COMPACT.toJson(encoded));
 		} catch (Exception e) {
 			LOGGER.info("[Skyblocker WebSocket Message Handler] Failed to send message! Type: {}, Service: {}, Message: {}", type, service, message, e);
-		}
+		}*/
 	}
 
 	private static Dynamic<?> encodeMessage(Message<? extends Message<?>> message) {
-		try {
+		/*ry {
 			@SuppressWarnings("unchecked")
 			Codec<Message<?>> codec = (Codec<Message<?>>) message.getCodec();
 			Dynamic<JsonElement> dynamic = new Dynamic<>(JsonOps.INSTANCE, codec.encodeStart(JsonOps.INSTANCE, message).getOrThrow());
@@ -62,13 +54,13 @@ public class WsMessageHandler {
 			return dynamic;
 		} catch (Exception e) {
 			LOGGER.info("[Skyblocker WebSocket Message Handler] Failed to encode message! Message: {}", message, e);
-		}
+		}*/
 
 		return new Dynamic<>(JsonOps.INSTANCE);
 	}
 
 	static void handleMessage(String message) {
-		try {
+		/*try {
 			JsonObject payloadEncoded = JsonParser.parseString(message).getAsJsonObject();
 
 			//When status is present it's usually a response to a packet being sent or some error, we don't need to pay attention to those
@@ -83,6 +75,6 @@ public class WsMessageHandler {
 			}
 		} catch (Exception e) {
 			LOGGER.error("[Skyblocker WebSocket Message Handler] Failed to handle incoming message!", e);
-		}
+		}*/
 	}
 }

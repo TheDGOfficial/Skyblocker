@@ -22,6 +22,9 @@ public class Attributes {
 
 	@Init
 	public static void init() {
+		if (true) {
+			return;
+		}
 		NEURepoManager.runAsyncAfterLoad(Attributes::loadShards);
 	}
 
